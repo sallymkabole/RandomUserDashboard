@@ -31,7 +31,7 @@ jobs:
             git config user.email "sllmusanga7@gmail.com"
             git config user.name "sallymkabole"- add_ssh_keys:
           fingerprints:
-            - "1f:b1:19:b3:14:68:2f:ed:30:d6:68:63:06:05:2c:4a"
+            - "91:aa:e2:b1:ee:68:2f:c0:3c:36:e1:b9:d1:07:34:b7"
         
       - run:
           name: Deploy docs to gh-pages branch
