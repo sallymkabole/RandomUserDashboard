@@ -59,3 +59,16 @@ export default {
   build: {
   }
 }
+const routerBase =
+  process.env.DEPLOY_ENV === "GH_PAGES"
+    ? {
+        router: {
+          base: "/devplacement/"
+        }
+      }
+    : {};
+    module.exports =  {
+
+      ...routerBase,
+  
+  }
