@@ -8,6 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "test": "jest",
+    "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate --fail-on-page-error"
   },
   "dependencies": {
