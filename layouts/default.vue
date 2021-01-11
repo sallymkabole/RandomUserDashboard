@@ -1,61 +1,50 @@
 <template>
   <v-app class="bg">
     <v-main>
-      <v-container>
-        <v-layout row>
-           <v-flex xs6>
-            </v-flex>
-           <v-flex xs6> <v-card class="white right mt-12">
-            <v-card-title class="headline">
-              Random User Dashboard
-            </v-card-title>
-            <v-card-text>
-              <p>
-                Vuetify is a progressive Material Design component framework for
-                Vue.js. It was designed to empower developers to create amazing
-                applications.
-              </p>
-              <p>
-                For more information on Vuetify, check out the
-                <a
-                  href="https://vuetifyjs.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  documentation </a
-                >.
-              </p>
+      <v-container >
+        <v-layout row class="txt" >
+          <v-flex md6>
+            <div class="left">
+              <v-card-title class="headline"> Hello User </v-card-title>
+              <v-card-text>
+                <p>
+                  Welcome to your dashboard,kindly sort through the user base
+                </p>
 
-              <p>
-                Thank you for developing with Vuetify and I look forward to
-                bringing more exciting features in the future.
-              </p>
-              <div class="text-xs-right">
-                <em><small>&mdash; John Leider</small></em>
-              </div>
-              <hr class="my-3" />
-              <a
-                href="https://nuxtjs.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Nuxt Documentation
-              </a>
-              <br />
-              <a
-                href="https://github.com/nuxt/nuxt.js"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Nuxt GitHub
-              </a>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer />
-              <v-btn color="primary" nuxt to="/inspire"> Continue </v-btn>
+                <div class="text-xs-right">
+                  <v-text-field
+                    id="user"
+                    v-model="queryUser.name"
+                    prepend-inner-icon="mdi-magnify"
+                    label="Find a User"
+                    
+                    type="text"
+                    class="search"
+                    
+                    
+                  ></v-text-field>
+                  
+                </div>
+                
+              </v-card-text>
+              <v-card-title > Show Users </v-card-title>
+               <v-card-actions class="ml-2">
+              
+              <v-btn  class="round" x-large color="#F935A9"> <v-icon>mdi-account-group</v-icon> </v-btn ><v-btn class="round"  x-large color="#30BBB5"> <v-icon>mdi-human-male</v-icon> </v-btn>
+              <v-btn class="round"  x-large color="#7946C1"> <v-icon>mdi-human-female</v-icon>  </v-btn>
+
             </v-card-actions>
-          </v-card></v-flex>
-         
+            </div>
+
+           
+          </v-flex>
+          <v-flex ms6>
+            <v-card class="white right">
+              <v-card-title class="headline">
+                Random User Dashboard
+              </v-card-title>
+            </v-card></v-flex
+          >
         </v-layout>
       </v-container>
     </v-main>
@@ -69,22 +58,10 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: "mdi-apps",
-          title: "Welcome",
-          to: "/",
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire",
-        },
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: "Vuetify.js",
+      queryUser: {
+        name:""
+      }
     };
   },
 };
@@ -94,7 +71,32 @@ export default {
   background-color: #262a41;
 }
 .right {
-  width: 800px;
-  
+  width: 50%;
+  height: 90%;
+  border-radius: 35px;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+}
+.left {
+  position: absolute;
+  top: 250px;
+  left: 25px;
+  width: 650px;
+}
+.txt {
+  font-family: "Poppins", sans-serif;
+}
+.round {
+background: 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 30px #00000029;
+border-radius: 20px;
+opacity: 1;
+}
+.search{
+background: #3C3F54 0% 0% no-repeat padding-box;
+border: 1px solid #3C3F54;
+border-radius: 28px;
+opacity: 1;
 }
 </style>
