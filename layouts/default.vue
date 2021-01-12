@@ -23,34 +23,40 @@
                 </div>
               </v-card-text>
               <v-card-title> Show Users </v-card-title>
-              <v-card-actions >
-                <v-card flat class="bg white--text" width="400" >
+              <v-card-actions>
+                <v-card flat class="bg white--text" width="400">
                   <v-card-actions>
-                    <v-flex md4 >
-                    <v-btn class="round white--text " x-large color="#F935A9">
-                      <v-icon>mdi-human-male</v-icon>
-                    </v-btn>
-                    <v-card-text>All Users</v-card-text>
-                  </v-flex>
-                  
-                  <v-flex md4
-                    ><v-btn class="round white--text" x-large color="#30BBB5">
-                      <v-icon>mdi-human-male</v-icon>
-                    </v-btn>
-                    <v-card-text>Male Users</v-card-text></v-flex
-                  >
-                  <v-flex md4>
-                  <v-btn class="round white--text" x-large color="#7946C1">
-                    <v-icon>mdi-human-female</v-icon>
-                  </v-btn>
-                  <v-card-text>Female Users</v-card-text>
-                </v-flex>
+                    <v-flex md4>
+                      <v-btn class="round white--text" x-large color="#F935A9" @click="displayAllgender">
+                        <v-icon>mdi-account-group</v-icon>
+                      </v-btn>
+                      <v-card-text>All Users</v-card-text>
+                    </v-flex>
+
+                    <v-flex md4
+                      ><v-btn
+                        class="round white--text"
+                        x-large
+                        color="#30BBB5"
+                        @click="displayMales"
+                      >
+                        <v-icon>mdi-human-male</v-icon>
+                      </v-btn>
+                      <v-card-text>Male Users</v-card-text></v-flex
+                    >
+                    <v-flex md4>
+                      <v-btn
+                        class="round white--text"
+                        x-large
+                        color="#7946C1"
+                        @click="displayFemales"
+                      >
+                        <v-icon>mdi-human-female</v-icon>
+                      </v-btn>
+                      <v-card-text>Female Users</v-card-text>
+                    </v-flex>
                   </v-card-actions>
-                    
-                  
-                  
                 </v-card>
-                
               </v-card-actions>
             </div>
           </v-flex>
@@ -77,7 +83,7 @@
                   </v-flex>
                   <v-flex xs12 md4>
                     <v-autocomplete
-                      v-model="values"
+                      
                       :items="items"
                       solo
                       dense
@@ -137,20 +143,26 @@
                       </v-list-item-action>
                     </v-list-item>
                   </v-card>
-                  
                 </v-row>
-              
               </v-flex>
               <v-card-actions>
-              <v-btn rounded class="ma-8 white--text download-btn" color="#7946C1"
-                          ><v-icon class="pa-2 " >mdi-cloud-download-outline</v-icon> Download</v-btn>
-                          <v-spacer></v-spacer>
-                          <div class="mr-4">
-                          <v-btn text class="white--text download-btn" color="#7946C1"
-                          ><v-icon  >mdi-chevron-left</v-icon> </v-btn> <v-btn text class=" white--text download-btn" color="#7946C1"
-                          ><v-icon >mdi-chevron-right</v-icon> </v-btn></div>
+                <v-btn
+                  rounded
+                  class="ma-8 white--text download-btn"
+                  color="#7946C1"
+                  ><v-icon class="pa-2">mdi-cloud-download-outline</v-icon>
+                  Download</v-btn
+                >
+                <v-spacer></v-spacer>
+                <div class="mr-4">
+                  <v-btn text class="white--text download-btn" color="#7946C1"
+                    ><v-icon>mdi-chevron-left</v-icon>
+                  </v-btn>
+                  <v-btn text class="white--text download-btn" color="#7946C1"
+                    ><v-icon>mdi-chevron-right</v-icon>
+                  </v-btn>
+                </div>
               </v-card-actions>
-
             </v-card>
           </v-flex>
         </v-layout>
@@ -180,11 +192,30 @@ export default {
   },
 
   created: function () {
-    axios.get("https://randomuser.me/api/?results=1").then((res) => {
+    axios.get("https://randomuser.me/api/?results=").then((res) => {
       this.people = res.data.results;
     });
   },
-};
+  methods: {
+    displayAllgender () {
+      axios.get("https://randomuser.me/api/?results=").then((res) => {
+      this.people = res.data.results;
+    });
+    },
+    displayMales () {
+      axios.get("https://randomuser.me/api/?gender=male").then((res) => {
+      this.people = res.data.results;
+    });
+    },
+    displayFemales () {
+      axios.get("https://randomuser.me/api/?gender=female").then((res) => {
+      this.people = res.data.results;
+    });
+    }
+    
+
+  }
+}
 </script>
 <style scoped>
 .bg {
@@ -245,13 +276,13 @@ export default {
   border-radius: 13px;
   opacity: 1;
 }
-.small{
+.small {
   width: 700px;
 }
-.download-btn{
-  background: #7946C1 0% 0% no-repeat padding-box;
-box-shadow: 0px 3px 6px #00000029;
-border-radius: 35px;
-opacity: 1;
+.download-btn {
+  background: #7946c1 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 35px;
+  opacity: 1;
 }
 </style>
