@@ -44,7 +44,7 @@
                     Filter by
                   </v-card-subtitle>
                 </v-flex>
-                <v-row >
+                <v-row>
                   <v-flex xs12 md4>
                     <v-text-field
                       id="user"
@@ -52,7 +52,7 @@
                       prepend-inner-icon="mdi-magnify"
                       label="Find in List"
                       type="text"
-                      outlined
+                      solo
                       class="ml-10"
                     ></v-text-field>
                   </v-flex>
@@ -60,23 +60,65 @@
                     <v-autocomplete
                       v-model="values"
                       :items="items"
-                      outlined
+                      solo
                       dense
                       small-chips
-                      height="57px"
+                      height="50px"
                       clearable
                       label="Country"
                       multiple
-                      class="ml-10"
+                      class="ml-10 text--grey"
                     ></v-autocomplete>
                   </v-flex>
-                  <v-flex xs12 md4 >
+                  <v-flex xs12 md4>
                     <v-switch
                       v-model="country"
                       :label="`Country: ${country.toString()}`"
                       class="mb-12 ml-8"
                     ></v-switch>
                   </v-flex>
+                </v-row>
+                <v-row>
+                  <v-card width="900" height="115" class="ml-10">
+                    <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
+                    <v-list-item>
+                      <v-avatar size="86px" class="img">
+                        <img
+                          alt="Avatar"
+                          src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                        />
+                      </v-avatar>
+
+                      <v-list-item-content
+                        class="ml-6"
+                        v-for="(person, key) in people"
+                        :key="key"
+                      >
+                        <v-list-item-title
+                          >{{ person.name.first }}
+                          {{ person.name.last }}</v-list-item-title
+                        >
+                        <v-list-item-subtitle
+                          >{{ person.location.street.number }}
+                          {{ person.location.city }}
+                          {{ person.location.state }}</v-list-item-subtitle
+                        >
+
+                        <v-list-item-subtitle
+                          ><v-icon>mdi-email-outline</v-icon>{{ person.email }}
+
+                          <v-icon>mdi-phone-in-talk</v-icon>{{ person.phone }}
+                        </v-list-item-subtitle>
+                      </v-list-item-content>
+                      <v-list-item-action>
+                      <v-spacer></v-spacer
+                      ><v-btn class="btn" color="#30BBB5"
+                        ><v-icon>mdi-arrow-right</v-icon></v-btn
+                      >
+                      </v-list-item-action>
+                    </v-list-item>
+                   
+                  </v-card>
                 </v-row>
               </v-flex>
             </v-card>
@@ -88,6 +130,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -96,12 +139,18 @@ export default {
       fixed: false,
       title: "Vuetify.js",
       country: true,
+      people: [],
       queryUser: {
         name: "",
       },
 
       items: ["Kenya", "Nigeria", "Ghana", "Tz"],
     };
+  },
+  created: function () {
+    axios.get("https://randomuser.me/api/?results=1").then((res) => {
+      this.people = res.data.results;
+    });
   },
 };
 </script>
@@ -116,6 +165,7 @@ export default {
   position: absolute;
   right: 50px;
   top: 50px;
+  background-color: #f7f7ff;
 }
 .left {
   position: absolute;
@@ -149,6 +199,18 @@ export default {
 }
 .v-text-field {
   width: 300px;
-  
+}
+.img {
+  width: 113px;
+  height: 113px;
+  border-radius: 50%;
+  border: 8px solid #75d6d1;
+  opacity: 1;
+}
+.btn{
+  background: #30BBB5 0% 0% no-repeat padding-box;
+box-shadow: 2px 15px 30px #30BBB574;
+border-radius: 13px;
+opacity: 1;
 }
 </style>
