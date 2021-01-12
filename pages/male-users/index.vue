@@ -102,8 +102,9 @@
                     ></v-switch>
                   </v-flex>
                 </v-row>
-                <v-row v-for="i in quantity" class="mt-8">
-                  <v-card width="900" height="115" class="ml-10">
+                <v-row  class="mt-8">
+                  <v-card v-for="(person, key) in people"
+                        :key="key" width="900" height="115" class="ml-10">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
                     <v-list-item>
                       <v-avatar size="86px" class="img">
@@ -115,12 +116,11 @@
 
                       <v-list-item-content
                         class="ml-6"
-                        v-for="(person, key) in people"
-                        :key="key"
+                        
                       >
                         <v-list-item-title
                           >{{ person.name.first }}
-                          {{ person.name.last }}</v-list-item-title
+                          {{ person.name.last }} {{ person.gender }}</v-list-item-title
                         >
                         <v-list-item-subtitle
                           >{{ person.location.street.number }}
@@ -149,6 +149,8 @@
                   rounded
                   class="ma-8 white--text download-btn"
                   color="#7946C1"
+                  href="https://randomuser.me/api/?gender=male&nat=gb,us,es&format=csv&dl"
+                  download
                   ><v-icon class="pa-2">mdi-cloud-download-outline</v-icon>
                   Download</v-btn
                 >
@@ -179,7 +181,7 @@ export default {
       title: "Vuetify.js",
       country: true,
       people: [],
-      quantity: 3,
+      
       queryUser: {
         name: "",
       },
@@ -189,28 +191,17 @@ export default {
   },
 
   created: function () {
-    axios.get("https://randomuser.me/api/?results=").then((res) => {
+    axios.get("https://randomuser.me/api/?gender=male").then((res) => {
       this.people = res.data.results;
     });
   },
   methods: {
-    displayAllgender () {
-      axios.get("https://randomuser.me/api/?results=").then((res) => {
-      this.people = res.data.results;
-    });
-    },
+    
     displayMales () {
       axios.get("https://randomuser.me/api/?gender=male").then((res) => {
       this.people = res.data.results;
     });
-    },
-    displayFemales () {
-      axios.get("https://randomuser.me/api/?gender=female").then((res) => {
-      this.people = res.data.results;
-    });
     }
-    
-
   }
 }
 </script>
