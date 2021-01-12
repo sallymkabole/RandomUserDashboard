@@ -1,50 +1,86 @@
 <template>
   <v-app class="bg">
     <v-main>
-      <v-container >
-        <v-layout row class="txt" >
-          <v-flex md6>
+      <v-container>
+        <v-layout row class="txt">
+          <v-flex xs12 md6>
             <div class="left">
-              <v-card-title class="headline"> Hello User </v-card-title>
+              <v-card-title class="greet"> Hello User </v-card-title>
               <v-card-text>
                 <p>
                   Welcome to your dashboard,kindly sort through the user base
                 </p>
 
                 <div class="text-xs-right">
-                  <v-text-field
+                  <v-autocomplete
                     id="user"
                     v-model="queryUser.name"
                     prepend-inner-icon="mdi-magnify"
                     label="Find a User"
-                    
                     type="text"
                     class="search"
-                    
-                    
-                  ></v-text-field>
-                  
+                  ></v-autocomplete>
                 </div>
-                
               </v-card-text>
-              <v-card-title > Show Users </v-card-title>
-               <v-card-actions class="ml-2">
-              
-              <v-btn  class="round" x-large color="#F935A9"> <v-icon>mdi-account-group</v-icon> </v-btn ><v-btn class="round"  x-large color="#30BBB5"> <v-icon>mdi-human-male</v-icon> </v-btn>
-              <v-btn class="round"  x-large color="#7946C1"> <v-icon>mdi-human-female</v-icon>  </v-btn>
-
-            </v-card-actions>
+              <v-card-title> Show Users </v-card-title>
+              <v-card-actions class="ml-2">
+                <v-btn class="round" x-large color="#F935A9">
+                  <v-icon>mdi-account-group</v-icon> </v-btn
+                ><v-btn class="round" x-large color="#30BBB5">
+                  <v-icon>mdi-human-male</v-icon>
+                </v-btn>
+                <v-btn class="round" x-large color="#7946C1">
+                  <v-icon>mdi-human-female</v-icon>
+                </v-btn>
+              </v-card-actions>
             </div>
-
-           
           </v-flex>
-          <v-flex ms6>
-            <v-card class="white right">
-              <v-card-title class="headline">
-                Random User Dashboard
-              </v-card-title>
-            </v-card></v-flex
-          >
+          <v-flex xs12 md6>
+            <v-card class="right">
+              <v-flex md12>
+                <v-flex xs12 md4>
+                  <v-card-title class="text ml-4"> All User </v-card-title>
+                  <v-card-subtitle class="grey--text mb-2 ml-4">
+                    Filter by
+                  </v-card-subtitle>
+                </v-flex>
+                <v-row >
+                  <v-flex xs12 md4>
+                    <v-text-field
+                      id="user"
+                      v-model="queryUser.name"
+                      prepend-inner-icon="mdi-magnify"
+                      label="Find in List"
+                      type="text"
+                      outlined
+                      class="ml-10"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs12 md4>
+                    <v-autocomplete
+                      v-model="values"
+                      :items="items"
+                      outlined
+                      dense
+                      small-chips
+                      height="57px"
+                      clearable
+                      label="Country"
+                      multiple
+                      class="ml-10"
+                    ></v-autocomplete>
+                  </v-flex>
+                  <v-flex xs12 md4 >
+                    <v-switch
+                      v-model="country"
+                      :label="`Country: ${country.toString()}`"
+                      class="mb-12 ml-8"
+                    ></v-switch>
+                  </v-flex>
+                </v-row>
+              </v-flex>
+            </v-card>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-main>
@@ -59,9 +95,12 @@ export default {
       drawer: false,
       fixed: false,
       title: "Vuetify.js",
+      country: true,
       queryUser: {
-        name:""
-      }
+        name: "",
+      },
+
+      items: ["Kenya", "Nigeria", "Ghana", "Tz"],
     };
   },
 };
@@ -81,22 +120,35 @@ export default {
 .left {
   position: absolute;
   top: 250px;
-  left: 25px;
+  left: 35px;
   width: 650px;
 }
 .txt {
   font-family: "Poppins", sans-serif;
 }
 .round {
-background: 0% 0% no-repeat padding-box;
-box-shadow: 0px 3px 30px #00000029;
-border-radius: 20px;
-opacity: 1;
+  background: 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 30px #00000029;
+  border-radius: 20px;
+  opacity: 1;
 }
-.search{
-background: #3C3F54 0% 0% no-repeat padding-box;
-border: 1px solid #3C3F54;
-border-radius: 28px;
-opacity: 1;
+.search {
+  background: #3c3f54 0% 0% no-repeat padding-box;
+  border: 1px solid #3c3f54;
+  border-radius: 28px;
+  opacity: 1;
+}
+.text {
+  color: #262a41;
+  letter-spacing: -0.04px;
+  opacity: 1;
+  font: normal normal bold 37px/122px Poppins;
+}
+.greet {
+  font: normal normal 200 49px/120px Poppins;
+}
+.v-text-field {
+  width: 300px;
+  
 }
 </style>
