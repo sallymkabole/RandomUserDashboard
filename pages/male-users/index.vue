@@ -103,8 +103,8 @@
                   </v-flex>
                 </v-row>
                 <v-row  class="mt-8">
-                  <v-card v-for="(person, key) in people"
-                        :key="key" width="900" height="115" class="ml-10">
+                  <v-card  v-for="(person, key) in people"
+                        :key="key" width="900" height="115" class="ml-10 mt-4">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
                     <v-list-item>
                       <v-avatar size="86px" class="img">
@@ -120,7 +120,7 @@
                       >
                         <v-list-item-title
                           >{{ person.name.first }}
-                          {{ person.name.last }} {{ person.gender }}</v-list-item-title
+                          {{ person.name.last }} </v-list-item-title
                         >
                         <v-list-item-subtitle
                           >{{ person.location.street.number }}
@@ -159,7 +159,9 @@
                   <v-btn rounded class=" " color="#E2E2EA"
                     ><v-icon>mdi-chevron-left</v-icon>
                   </v-btn>
-                  <v-btn rounded class="white--text " color="#262A41"
+                  <v-btn
+                  @click="pagination"
+                  rounded class="white--text " color="#262A41"
                     ><v-icon>mdi-chevron-right</v-icon>
                   </v-btn>
                 </div>
@@ -191,7 +193,7 @@ export default {
   },
 
   created: function () {
-    axios.get("https://randomuser.me/api/?gender=male").then((res) => {
+    axios.get("https://randomuser.me/api/?gender=male&results=3").then((res) => {
       this.people = res.data.results;
     });
   },
@@ -201,6 +203,11 @@ export default {
       axios.get("https://randomuser.me/api/?gender=male").then((res) => {
       this.people = res.data.results;
     });
+    },
+    pagination () {
+      axios.get("https://randomuser.me/api/?page=3&gender=male&results=3&seed=3").then((res) => {
+      this.people = res.data.results;
+    })
     }
   }
 }
