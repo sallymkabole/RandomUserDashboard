@@ -97,7 +97,7 @@
                   <v-flex xs12 md4>
                     <v-switch
                       v-model="country"
-                      :label="`Country: ${country.toString()}`"
+                      label="Country"
                       class="mb-12 ml-8"
                     ></v-switch>
                   </v-flex>
@@ -107,12 +107,7 @@
                         :key="key" width="900" height="115" class="ml-10 mt-4">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
                     <v-list-item>
-                      <v-avatar size="86px" class="img">
-                        <img
-                          alt="Avatar"
-                          src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
-                        />
-                      </v-avatar>
+                      <img v-bind:src="person.picture.large" v-bind:alt="person" class=" img">
 
                       <v-list-item-content
                         class="ml-6"
@@ -129,9 +124,9 @@
                         >
 
                         <v-list-item-subtitle
-                          ><v-icon>mdi-email-outline</v-icon>{{ person.email }}
+                          ><v-icon>mdi-email-outline</v-icon> {{ person.email }}
 
-                          <v-icon>mdi-phone-in-talk</v-icon>{{ person.phone }}
+                          <v-icon>mdi-phone-in-talk</v-icon> {{ person.phone }}
                         </v-list-item-subtitle>
                       </v-list-item-content>
                       <v-list-item-action>
@@ -259,10 +254,10 @@ export default {
   width: 300px;
 }
 .img {
-  width: 113px;
-  height: 113px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
-  border: 8px solid #75d6d1;
+  border: 6px solid #75d6d1;
   opacity: 1;
 }
 .btn {
