@@ -2,7 +2,7 @@
   <v-app class="bg">
     <v-main>
       <v-container>
-        <v-layout row class="txt">
+        <v-layout row class="white--text txt">
           <v-flex xs12 md6>
             <div class="left">
               <v-card-title class="greet"> Hello User </v-card-title>
@@ -12,26 +12,45 @@
                 </p>
 
                 <div class="text-xs-right">
-                  <v-autocomplete
+                  <v-text-field
                     id="user"
                     v-model="queryUser.name"
                     prepend-inner-icon="mdi-magnify"
                     label="Find a User"
-                    type="text"
-                    class="search"
-                  ></v-autocomplete>
+                    type="search"
+                    class="white--text search"
+                  ></v-text-field>
                 </div>
               </v-card-text>
               <v-card-title> Show Users </v-card-title>
-              <v-card-actions class="ml-2">
-                <v-btn class="round" x-large color="#F935A9">
-                  <v-icon>mdi-account-group</v-icon> </v-btn
-                ><v-btn class="round" x-large color="#30BBB5">
-                  <v-icon>mdi-human-male</v-icon>
-                </v-btn>
-                <v-btn class="round" x-large color="#7946C1">
-                  <v-icon>mdi-human-female</v-icon>
-                </v-btn>
+              <v-card-actions >
+                <v-card flat class="bg white--text" width="400" >
+                  <v-card-actions>
+                    <v-flex md4 >
+                    <v-btn class="round white--text " x-large color="#F935A9">
+                      <v-icon>mdi-human-male</v-icon>
+                    </v-btn>
+                    <v-card-text>All Users</v-card-text>
+                  </v-flex>
+                  
+                  <v-flex md4
+                    ><v-btn class="round white--text" x-large color="#30BBB5">
+                      <v-icon>mdi-human-male</v-icon>
+                    </v-btn>
+                    <v-card-text>Male Users</v-card-text></v-flex
+                  >
+                  <v-flex md4>
+                  <v-btn class="round white--text" x-large color="#7946C1">
+                    <v-icon>mdi-human-female</v-icon>
+                  </v-btn>
+                  <v-card-text>Female Users</v-card-text>
+                </v-flex>
+                  </v-card-actions>
+                    
+                  
+                  
+                </v-card>
+                
               </v-card-actions>
             </div>
           </v-flex>
@@ -78,7 +97,7 @@
                     ></v-switch>
                   </v-flex>
                 </v-row>
-                <v-row>
+                <v-row v-for="i in quantity" class="mt-8">
                   <v-card width="900" height="115" class="ml-10">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
                     <v-list-item>
@@ -111,16 +130,27 @@
                         </v-list-item-subtitle>
                       </v-list-item-content>
                       <v-list-item-action>
-                      <v-spacer></v-spacer
-                      ><v-btn class="btn" color="#30BBB5"
-                        ><v-icon>mdi-arrow-right</v-icon></v-btn
-                      >
+                        <v-spacer></v-spacer
+                        ><v-btn class="btn" color="#30BBB5"
+                          ><v-icon>mdi-arrow-right</v-icon></v-btn
+                        >
                       </v-list-item-action>
                     </v-list-item>
-                   
                   </v-card>
+                  
                 </v-row>
+              
               </v-flex>
+              <v-card-actions>
+              <v-btn rounded class="ma-8 white--text download-btn" color="#7946C1"
+                          ><v-icon class="pa-2 " >mdi-cloud-download-outline</v-icon> Download</v-btn>
+                          <v-spacer></v-spacer>
+                          <div class="mr-4">
+                          <v-btn text class="white--text download-btn" color="#7946C1"
+                          ><v-icon  >mdi-chevron-left</v-icon> </v-btn> <v-btn text class=" white--text download-btn" color="#7946C1"
+                          ><v-icon >mdi-chevron-right</v-icon> </v-btn></div>
+              </v-card-actions>
+
             </v-card>
           </v-flex>
         </v-layout>
@@ -140,6 +170,7 @@ export default {
       title: "Vuetify.js",
       country: true,
       people: [],
+      quantity: 3,
       queryUser: {
         name: "",
       },
@@ -147,6 +178,7 @@ export default {
       items: ["Kenya", "Nigeria", "Ghana", "Tz"],
     };
   },
+
   created: function () {
     axios.get("https://randomuser.me/api/?results=1").then((res) => {
       this.people = res.data.results;
@@ -160,17 +192,17 @@ export default {
 }
 .right {
   width: 50%;
-  height: 90%;
+  height: 95%;
   border-radius: 35px;
   position: absolute;
   right: 50px;
-  top: 50px;
+  top: 20px;
   background-color: #f7f7ff;
 }
 .left {
   position: absolute;
   top: 250px;
-  left: 35px;
+  left: 150px;
   width: 650px;
 }
 .txt {
@@ -207,10 +239,19 @@ export default {
   border: 8px solid #75d6d1;
   opacity: 1;
 }
-.btn{
-  background: #30BBB5 0% 0% no-repeat padding-box;
-box-shadow: 2px 15px 30px #30BBB574;
-border-radius: 13px;
+.btn {
+  background: #30bbb5 0% 0% no-repeat padding-box;
+  box-shadow: 2px 15px 30px #30bbb574;
+  border-radius: 13px;
+  opacity: 1;
+}
+.small{
+  width: 700px;
+}
+.download-btn{
+  background: #7946C1 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000029;
+border-radius: 35px;
 opacity: 1;
 }
 </style>
