@@ -26,7 +26,7 @@
                 <v-card flat class="bg white--text" width="400">
                   <v-card-actions>
                     <v-flex md4>
-                      <v-btn class="round white--text" x-large color="#F935A9" @click="displayAllgender">
+                      <v-btn class="round white--text" x-large color="#F935A9"  to="/">
                         <v-icon>mdi-account-group</v-icon>
                       </v-btn>
                       <v-card-text>All Users</v-card-text>
@@ -37,7 +37,7 @@
                         class="round white--text"
                         x-large
                         color="#30BBB5"
-                        to="/male-users"
+                        @click="displayMales"
                       >
                         <v-icon>mdi-human-male</v-icon>
                       </v-btn>
@@ -63,7 +63,7 @@
             <v-card class="right">
               <v-flex md12>
                 <v-flex xs12 md4>
-                  <v-card-title class="text ml-4"> All User </v-card-title>
+                  <v-card-title class="text ml-4"> Male Users </v-card-title>
                   <v-card-subtitle class="grey--text mb-2 ml-4">
                     Filter by
                   </v-card-subtitle>
@@ -199,6 +199,16 @@ export default {
       this.people = res.data.results;
     });
     },
+    displayMales () {
+      axios.get("https://randomuser.me/api/?gender=male").then((res) => {
+      this.people = res.data.results;
+    });
+    },
+    displayFemales () {
+      axios.get("https://randomuser.me/api/?gender=female").then((res) => {
+      this.people = res.data.results;
+    });
+    }
     
 
   }
