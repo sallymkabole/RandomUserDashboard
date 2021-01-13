@@ -13,6 +13,7 @@
                 <div class="text-xs-right">
                   <v-text-field
                     id="user"
+
                     prepend-inner-icon="mdi-magnify"
                     label="Find a User"
                     type="search"
@@ -62,7 +63,7 @@
             <v-card class="right">
               <v-flex md12>
                 <v-flex xs12 md4>
-                  <v-card-title class="text ml-4"> All Users </v-card-title>
+                  <v-card-title class="text ml-4"> Male Users </v-card-title>
                   <v-card-subtitle class="grey--text mb-2 ml-4">
                     Filter by
                   </v-card-subtitle>
@@ -101,35 +102,31 @@
                   </v-flex>
                 </v-row>
                 <v-row  class="mt-8">
-                  <v-card  v-for="(person, key) in people"
-                        :key="key" width="900" height="115" class="ml-10 mt-4">
+                  <v-card   width="900" height="115" class="ml-10 mt-4">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
                     <v-list-item>
-                      <img v-bind:src="person.picture.large" v-bind:alt="person" class=" img">
 
                       <v-list-item-content
                         class="ml-6"
                         
                       >
                         <v-list-item-title
-                          >{{ person.name.first }}
-                          {{ person.name.last }} </v-list-item-title
+                          >{{ getUser.fname }}
+                          {{ getUser.fname }} 
+                          {{ getUser.ageDob }} </v-list-item-title
                         >
                         <v-list-item-subtitle
-                          >{{ person.location.street.number }}
-                          {{ person.location.city }}
-                          {{ person.location.state }}</v-list-item-subtitle
+                          >{{ getUser.email }}
+                          {{ getUser.dateRegistered}}
+                          {{ getUser.phone }}
+                          {{ getUser.cell }}</v-list-item-subtitle
                         >
 
-                        <v-list-item-subtitle
-                          ><v-icon>mdi-email-outline</v-icon> {{ person.email }}
-
-                          <v-icon>mdi-phone-in-talk</v-icon> {{ person.phone }}
-                        </v-list-item-subtitle>
+                       
                       </v-list-item-content>
                       <v-list-item-action>
                         <v-spacer></v-spacer
-                        ><v-btn @click="userDetails" class="btn white--text" color="#30BBB5"
+                        ><v-btn class="btn white--text" color="#30BBB5"
                           ><v-icon>mdi-arrow-right</v-icon></v-btn
                         >
                       </v-list-item-action>
@@ -167,6 +164,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -184,26 +182,29 @@ export default {
   },
 
   created: function () {
-    axios.get("https://randomuser.me/api/?results=3").then((res) => {
+    axios.get("https://randomuser.me/api/?results=3", ).then((res) => {
       this.people = res.data.results;
     });
   },
-  methods: {
-    userDetails () {
-     
-      const userDetails = {
-        fname: this.person.name.first,
-        lname: this.person.name.last
+  computed: {
+    ...mapGetters([
+      'getUser'
+    ])
+  },
+  beforeDestroy () {
+    clearInterval(this.interval)
+  },
+  mounted () {
+    console.log(this.getUser, 'get user')
+    this.interval = setInterval(() => {
+      if (this.value === 100) {
+        return (this.value = 0)
       }
-       console.log('userDetails')
-      this.$store.commit('SET_USER_DETAILS', userDetails)
-      this.$router.push('/user-details')
-    },
-    pagination () {
-      axios.get("https://randomuser.me/api/?page=3&gender=male&results=3&seed=3").then((res) => {
-      this.people = res.data.results;
-    })
-    }
+      this.value += 10
+    }, 1000)
+  },
+  methods: {
+    
   }
 }
 </script>

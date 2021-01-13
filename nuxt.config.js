@@ -33,11 +33,18 @@ export default {
     '@nuxtjs/vuetify',
     
   ],
+  proxy: {
+    '/api':'https://randomuser.me/api/?results=3',
+      
+      
+      },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    ['@nuxtjs/axios']
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
+  
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
