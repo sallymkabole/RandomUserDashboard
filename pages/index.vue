@@ -193,12 +193,6 @@ export default {
     });
   },
   methods: {
-    
-    displayMales () {
-      axios.get("https://randomuser.me/api/?gender=male").then((res) => {
-      this.people = res.data.results;
-    });
-    },
     pagination () {
       axios.get("https://randomuser.me/api/?page=3&gender=male&results=3&seed=3").then((res) => {
       this.people = res.data.results;
