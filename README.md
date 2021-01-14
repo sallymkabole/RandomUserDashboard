@@ -28,5 +28,5 @@ $ npm run generate
 *Vue Js
 *Axios
 
-# Link to Hosted [https://rand-user-dashboard.herokuapp.com/]()
+# Web app is hosted at  (https://rand-user-dashboard.herokuapp.com/)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
