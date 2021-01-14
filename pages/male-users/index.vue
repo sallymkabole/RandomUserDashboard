@@ -13,6 +13,7 @@
                 <div class="text-xs-right">
                   <v-text-field
                     id="user"
+                    v-model="queryUser.name"
                     prepend-inner-icon="mdi-magnify"
                     label="Find a User"
                     type="search"
@@ -36,7 +37,7 @@
                         class="round white--text"
                         x-large
                         color="#30BBB5"
-                        to="/male-users"
+                        @click="displayMales"
                       >
                         <v-icon>mdi-human-male</v-icon>
                       </v-btn>
@@ -62,7 +63,7 @@
             <v-card class="right">
               <v-flex md12>
                 <v-flex xs12 md4>
-                  <v-card-title class="text ml-4"> All Users </v-card-title>
+                  <v-card-title class="text ml-4"> Male Users </v-card-title>
                   <v-card-subtitle class="grey--text mb-2 ml-4">
                     Filter by
                   </v-card-subtitle>
@@ -71,6 +72,7 @@
                   <v-flex xs12 md4>
                     <v-text-field
                       id="user"
+                      v-model="queryUser.name"
                       prepend-inner-icon="mdi-magnify"
                       label="Find in List"
                       type="text"
@@ -129,7 +131,7 @@
                       </v-list-item-content>
                       <v-list-item-action>
                         <v-spacer></v-spacer
-                        ><v-btn @click="userDetails" class="btn white--text" color="#30BBB5"
+                        ><v-btn class="btn white--text" color="#30BBB5"
                           ><v-icon>mdi-arrow-right</v-icon></v-btn
                         >
                       </v-list-item-action>
@@ -142,7 +144,7 @@
                   rounded
                   class="ma-8 white--text download-btn"
                   color="#7946C1"
-                  href="https://randomuser.me/api/?results=99&nat=gb,us,es&format=csv&dl"
+                  href="https://randomuser.me/api/?gender=male&results=77&nat=gb,us,es&format=csv&dl"
                   download
                   ><v-icon class="pa-2">mdi-cloud-download-outline</v-icon>
                   Download</v-btn
@@ -177,27 +179,25 @@ export default {
       country: true,
       people: [],
       
-      
+      queryUser: {
+        name: "",
+      },
 
       items: ["Kenya", "Nigeria", "Ghana", "Tz"],
     };
   },
 
   created: function () {
-    axios.get("https://randomuser.me/api/?results=3").then((res) => {
+    axios.get("https://randomuser.me/api/?gender=male&results=3").then((res) => {
       this.people = res.data.results;
     });
   },
   methods: {
-    userDetails () {
-     
-      const userDetails = {
-        fname: this.person.name.first,
-        lname: this.person.name.last
-      }
-       console.log('userDetails')
-      this.$store.commit('SET_USER_DETAILS', userDetails)
-      this.$router.push('/user-details')
+    
+    displayMales () {
+      axios.get("https://randomuser.me/api/?gender=male").then((res) => {
+      this.people = res.data.results;
+    });
     },
     pagination () {
       axios.get("https://randomuser.me/api/?page=3&gender=male&results=3&seed=3").then((res) => {
