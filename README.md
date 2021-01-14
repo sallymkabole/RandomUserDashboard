@@ -28,5 +28,5 @@ $ npm run generate
 *Axios
 *Vuetify
 
-# [Live Demo](https://rand-user-dashboard.herokuapp.com/)
+# [Live Demo](https://rand-user-dashboard.herokuapp.com/all-users)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
