@@ -27,5 +27,5 @@ $ npm run generate
 *Vue Js
 *Axios
 
-# [View Randon User Dashboard](https://rand-user-dashboard.herokuapp.com/)
+# [View Random User Dashboard](https://rand-user-dashboard.herokuapp.com/)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

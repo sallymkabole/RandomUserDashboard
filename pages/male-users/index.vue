@@ -17,7 +17,8 @@
                     prepend-inner-icon="mdi-magnify"
                     label="Find a User"
                     type="search"
-                    class="white--text search"
+                    solo
+                    rounded
                   ></v-text-field>
                 </div>
               </v-card-text>
@@ -102,7 +103,7 @@
                     ></v-switch>
                   </v-flex>
                 </v-row>
-                <v-row  class="mt-8">
+                <v-row  class="mb-4">
                   <v-card  v-for="(person, key) in people"
                         :key="key" width="900" height="115" class="ml-10 mt-4">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>

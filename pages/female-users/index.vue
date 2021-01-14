@@ -12,13 +12,14 @@
 
                 <div class="text-xs-right">
                   <v-text-field
-                    id="user"
-                    v-model="queryUser.name"
-                    prepend-inner-icon="mdi-magnify"
-                    label="Find a User"
-                    type="search"
-                    class="white--text search"
-                  ></v-text-field>
+                      id="user"
+                      prepend-inner-icon="mdi-magnify"
+                      label="Find in List"
+                      type="text"
+                      solo
+                      rounded
+                      
+                    ></v-text-field>
                 </div>
               </v-card-text>
               <v-card-title> Show Users </v-card-title>
@@ -26,7 +27,8 @@
                 <v-card flat class="bg white--text" width="400">
                   <v-card-actions>
                     <v-flex md4>
-                      <v-btn class="round white--text" x-large color="#F935A9"  to="/all-users">
+                      <v-btn class="round white--text" x-large color="#F935A9"  to="/all-users
+                      ">
                         <v-icon>mdi-account-group</v-icon>
                       </v-btn>
                       <v-card-text>All Users</v-card-text>
@@ -102,7 +104,7 @@
                     ></v-switch>
                   </v-flex>
                 </v-row>
-                <v-row  class="mt-8">
+                <v-row  class="mb-4">
                   <v-card  v-for="(person, key) in people"
                         :key="key" width="900" height="115" class="ml-10 mt-4">
                     <v-flex xs1 class="mt-4 ml-4 mr-2"></v-flex>
