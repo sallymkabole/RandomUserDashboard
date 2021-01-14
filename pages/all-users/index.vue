@@ -14,12 +14,13 @@
                   <v-text-field
                       id="user"
                       prepend-inner-icon="mdi-magnify"
-                      label="Find in List"
+                      label="Find a User"
                       type="text"
                       solo
                       rounded
-                      class=""
-                    ></v-text-field>
+                      v-model="keyword"
+                    > </v-text-field>
+                    
                 </div>
               </v-card-text>
               <v-card-title> Show Users </v-card-title>
@@ -178,6 +179,7 @@ export default {
       title: "Vuetify.js",
       country: true,
       people: [],
+      keyword: '',
       
       
 
@@ -190,17 +192,34 @@ export default {
       this.people = res.data.results;
     });
   },
+  watch: {
+  search(value) {
+    this.doSearch(value);
+  }
+},
   methods: {
     userDetails () {
      
       const userDetails = {
         fname: this.person.name.first,
-        lname: this.person.name.last
+        lname: this.person.name.last.results
+        
       }
        console.log('userDetails')
       this.$store.commit('SET_USER_DETAILS', userDetails)
       this.$router.push('/user-details')
     },
+    doSearch(value) {
+      console.log(`Checking :${this.keyword}`);
+    axios.get("https://randomuser.me/api/?seed=foobar" ,{
+      params: {
+        search : this.keyword
+      }
+      
+    }).then((res) => {
+      console.log(res.data.results);
+    });
+  },
     pagination () {
       axios.get("https://randomuser.me/api/?page=3&gender=male&results=3&seed=3").then((res) => {
       this.people = res.data.results;
