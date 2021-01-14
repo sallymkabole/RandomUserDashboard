@@ -26,6 +26,7 @@ $ npm run generate
 ## Built With
 *Vue Js
 *Axios
+*Vuetify
 
 # [Live Demo](https://rand-user-dashboard.herokuapp.com/)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
