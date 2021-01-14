@@ -1,7 +1,6 @@
-[![CircleCI](https://circleci.com/gh/sallymkabole/RandomUserDashboard.svg?style=svg&circle-token=<400dc42f3716c289f9c16cba952ab2d207d70c36>)]
-(https://circleci.com/gh/sallymkabole/RandomUserDashboard)
+[![CircleCI](https://circleci.com/gh/sallymkabole/RandomUserDashboard.svg?style=svg&circle-token=<400dc42f3716c289f9c16cba952ab2d207d70c36>)](https://circleci.com/gh/sallymkabole/RandomUserDashboard)
 
-# RandomUserDashboard
+# Random User Dashboard
 
 This is a web app that allows a user to randomly generate users.User can perform a local search, filter results according to gender and download the user detaild in csv format.
 
@@ -28,5 +27,5 @@ $ npm run generate
 *Vue Js
 *Axios
 
-# [Web app is hosted at](https://rand-user-dashboard.herokuapp.com/)
+# [View Randon User Dashboard](https://rand-user-dashboard.herokuapp.com/)
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
