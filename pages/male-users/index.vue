@@ -145,7 +145,7 @@
                   rounded
                   class="ma-8 white--text download-btn"
                   color="#7946C1"
-                  href="https://randomuser.me/api/?gender=male&results=77&nat=gb,us,es&format=csv&dl"
+                  href="https://randomuser.me/api/?gender=male&results=77&nat=gb,us,es&noinfo&format=csv&dl"
                   download
                   ><v-icon class="pa-2">mdi-cloud-download-outline</v-icon>
                   Download</v-btn
